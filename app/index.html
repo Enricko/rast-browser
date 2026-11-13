@@ -88,7 +88,7 @@
   <button id="home" type="button" title="Home" aria-label="Home">⌂</button>
   <form class="address" id="address-form">
     <input id="address" type="text" inputmode="url" spellcheck="false" autocomplete="off"
-           aria-label="Address" placeholder="Search Google or enter a web address">
+           aria-label="Address" placeholder="Search Brave or enter a web address">
     <button type="submit">Go</button>
   </form>
 </header>
@@ -111,7 +111,7 @@
         <a href="#" data-url="https://stackoverflow.com/">Stack Overflow</a>
         <a href="#" data-url="https://example.com/">Example</a>
       </div>
-      <p class="hint">Google search results are auto-switched to Brave when Google blocks the server fetch.</p>
+      <p class="hint">Searches use Brave Search: Google blocks server-side result pages. Other addresses open normally.</p>
     </div>
   </section>
   <div class="frame-wrap" id="frame-wrap">
@@ -153,7 +153,7 @@
     if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return null;
     const looksLikeAddress = /^[^\s/]+\.[^\s/]+/.test(value) || /^localhost(:\d+)?(\/|$)/i.test(value);
     if (!looksLikeAddress) {
-      return `https://www.google.com/search?q=${encodeURIComponent(value)}`;
+      return `https://search.brave.com/search?q=${encodeURIComponent(value)}`;
     }
     return `https://${value}`;
   };
