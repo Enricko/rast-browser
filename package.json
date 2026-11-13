@@ -13,7 +13,7 @@
       "name": "Enricko",
       "url": "https://github.com/Enricko"
     },
-    "minRastVersion": "0.11.13",
+    "minRastVersion": "0.11.16",
     "runtime": {
       "executables": [
         {
@@ -37,9 +37,9 @@
     }
   },
   "source": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "url": "https://github.com/Enricko/rast-browser",
-    "sha256": "8a8f02baf154009d59203da210acef0001a1900c046bb96dd19662c887066e00"
+    "sha256": "3db607af6e39f94ed37cabb37b7f7cd1196514bef2624949976ace8b6af8d1e1"
   },
   "targets": {
     "linux-x86_64": "ubuntu-24.04",

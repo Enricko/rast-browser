@@ -4,7 +4,9 @@ A web-viewer app for the RAST Package Center, built with the RAST package
 template. It opens public HTTPS pages through RAST's sandboxed page proxy
 (`/api/browser/page`), with an address bar, back/forward, reload and home.
 Opening the app shows a local start page (it needs no network), with a search
-box and quick links. Text that is not an address is searched on Brave Search, whose HTML results
+box and quick links. Typed addresses open in **Direct** view (a sandboxed
+external iframe) so ordinary sites and SPAs work; switch to **Reader** for
+sites that refuse framing or for search pages through RAST's proxy. Text that is not an address is searched on Brave Search, whose HTML results
 render through the proxy. Google blocks server-side result pages from
 datacenter IPs with a JavaScript-only anti-bot page, so Google searches would
 come back blank; Google itself is still one of the quick links. Fetch errors are shown as readable pages, never as
