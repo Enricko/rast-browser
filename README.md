@@ -3,6 +3,8 @@
 A web-viewer app for the RAST Package Center, built with the RAST package
 template. It opens public HTTPS pages through RAST's sandboxed page proxy
 (`/api/browser/page`), with an address bar, back/forward, reload and home.
+Text that is not an address is searched on Google (basic HTML results), and
+the home page is Google.
 
 Limitations: pages are fetched server-side and scripts run in a sandboxed
 frame, so sites that need cookies, same-origin storage, logins or heavy
