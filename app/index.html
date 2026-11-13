@@ -162,11 +162,11 @@
     frameWrap.classList.add("visible");
     if (mode === "direct") {
       frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups");
-      setStatus(`Direct: ${url}`);
+      setStatus(`Direct (interactive): ${url}`);
       frame.src = url;
     } else {
       frame.setAttribute("sandbox", "allow-scripts allow-forms");
-      setStatus(`Reader: ${url}`);
+      setStatus(`Reader (read-only): ${url}`);
       frame.src = proxy(url);
     }
   };
@@ -260,14 +260,16 @@
     });
   });
   frame.addEventListener("load", () => {
-    if (current) setStatus(mode === "direct" ? `Direct: ${current}` : `Reader: ${current}`);
+    if (current) {
+      setStatus(mode === "direct" ? `Direct (interactive): ${current}` : `Reader (read-only): ${current}`);
+    }
   });
   window.addEventListener("message", (event) => {
     if (event.source !== frame.contentWindow) return;
     const data = event.data;
     if (!data || data.type !== "rast-browser-navigate" || typeof data.url !== "string") return;
     if (!/^https:\/\//i.test(data.url)) return;
-    show(data.url, true);
+    show(data.url, true, true);
   });
   window.addEventListener("error", (event) => setStatus(String(event.message || "Load failed"), true));
   updateMode();
