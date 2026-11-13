@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "schemaVersion": 1,
+    "kind": "rast-package",
+    "id": "browser",
+    "type": "app",
+    "name": "Browser",
+    "description": "A built-in web viewer: opens public HTTPS pages through RAST's sandboxed page proxy.",
+    "homepage": "https://github.com/Enricko/rast-browser",
+    "license": "MIT",
+    "publisher": {
+      "id": "enricko",
+      "name": "Enricko",
+      "url": "https://github.com/Enricko"
+    },
+    "minRastVersion": "0.11.11",
+    "runtime": {
+      "executables": [
+        { "name": "browser", "path": "bin/browser" }
+      ],
+      "checks": [
+        { "executable": "browser", "args": ["--version"], "expect": "Browser {version}" }
+      ]
+    },
+    "app": {
+      "kind": "web",
+      "entry": "index.html"
+    }
+  },
+  "source": {
+    "version": "1.0.0",
+    "url": "https://github.com/Enricko/rast-browser",
+    "sha256": "104646349fac561da7463f4caada6b3a24fe73bb1d89e0b1037f5e60a68e7456"
+  },
+  "targets": {
+    "linux-x86_64": "ubuntu-24.04",
+    "linux-aarch64": "ubuntu-24.04-arm"
+  }
+}
