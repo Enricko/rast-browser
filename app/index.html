@@ -5,48 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Browser</title>
 <style>
-  :root { color-scheme: light dark; }
+  :root { color-scheme: dark; }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; overflow: hidden; }
   body {
     display: flex; flex-direction: column;
-    background: #f2f3f7; color: #1e2430;
-    font: 14px/1.4 Inter, "Segoe UI", system-ui, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    body { background: #17181c; color: #e9ecf2; }
-    .toolbar, .status { background: #20222a; border-color: #30343d; }
-    .toolbar input { background: #15171c; color: #e9ecf2; border-color: #3a3f4b; }
-    button { background: #262a33; color: #e9ecf2; }
-    button:hover { background: #303541; }
+    background: #17181c; color: #e9ecf2;
+    font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif;
   }
   .toolbar {
     display: flex; gap: 8px; align-items: center;
-    padding: 8px 10px; background: #fff; border-bottom: 1px solid #d8dbe4;
+    padding: 9px 10px; background: #20222a; border-bottom: 1px solid #30343d;
+    flex: 0 0 auto;
   }
   button {
-    appearance: none; border: 0; cursor: pointer; border-radius: 8px;
-    min-width: 34px; height: 32px; background: #eceef4; color: #1e2430;
+    appearance: none; border: 0; cursor: pointer; border-radius: 9px;
+    min-width: 34px; height: 34px; background: #262a33; color: #e9ecf2;
     font: 500 15px/1 Inter, system-ui, sans-serif;
   }
-  button:hover { background: #e2e5ee; }
-  button:disabled { opacity: .4; cursor: default; }
-  .address { display: flex; flex: 1; gap: 8px; align-items: center; }
-  .toolbar input {
-    flex: 1; height: 32px; padding: 0 12px; border-radius: 8px;
-    border: 1px solid #ccd1dd; background: #fff; color: inherit;
+  button:hover { background: #303541; }
+  button:disabled { opacity: .35; cursor: default; }
+  .address { display: flex; flex: 1; gap: 8px; align-items: center; min-width: 0; }
+  .address input {
+    flex: 1; min-width: 0; height: 34px; padding: 0 12px; border-radius: 9px;
+    border: 1px solid #3a3f4b; background: #15171c; color: inherit;
     font: 14px/1 Inter, system-ui, sans-serif; outline: none;
   }
-  .toolbar input:focus { border-color: #3b82f6; }
-  .frame-wrap { flex: 1; position: relative; background: #fff; }
-  iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; }
+  .address input:focus { border-color: #3b82f6; }
+  .address input::placeholder { color: #7c8494; }
+  main { flex: 1; min-height: 0; position: relative; background: #17181c; }
+  .frame-wrap { position: absolute; inset: 0; display: none; }
+  .frame-wrap.visible { display: block; }
+  iframe { width: 100%; height: 100%; border: 0; background: #fff; }
   .status {
-    min-height: 26px; display: flex; align-items: center; gap: 8px;
-    padding: 4px 12px; background: #fff; border-top: 1px solid #d8dbe4;
-    color: #5a6474; font-size: 12px; white-space: nowrap; overflow: hidden;
+    flex: 0 0 auto; min-height: 26px; display: flex; align-items: center; gap: 8px;
+    padding: 4px 12px; background: #20222a; border-top: 1px solid #30343d;
+    color: #8b93a5; font-size: 12px; white-space: nowrap; overflow: hidden;
     text-overflow: ellipsis;
   }
-  .status.error { color: #c0392b; }
+  .status.error { color: #ff8b8b; }
+  .start {
+    position: absolute; inset: 0; overflow: auto;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .start-card { width: min(620px, 100%); text-align: center; }
+  .start-logo {
+    width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(145deg, #3b82f6, #6d5efc);
+    font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -1px;
+  }
+  .start h1 { margin: 0 0 6px; font-size: 24px; font-weight: 650; letter-spacing: -.3px; }
+  .start p { margin: 0 0 22px; color: #8b93a5; font-size: 13px; }
+  .start form {
+    display: flex; gap: 8px; padding: 6px; border-radius: 14px;
+    background: #20222a; border: 1px solid #363a44;
+  }
+  .start form:focus-within { border-color: #3b82f6; }
+  .start input {
+    flex: 1; min-width: 0; height: 38px; padding: 0 12px; border: 0; outline: none;
+    background: transparent; color: #e9ecf2; font: inherit;
+  }
+  .start input::placeholder { color: #7c8494; }
+  .start form button { height: 38px; padding: 0 16px; background: #3b82f6; }
+  .start form button:hover { background: #2f6fe0; }
+  .links {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 18px;
+  }
+  .links a {
+    padding: 7px 12px; border-radius: 9px; background: #20222a; border: 1px solid #30343d;
+    color: #c8cfdd; text-decoration: none; font-size: 13px;
+  }
+  .links a:hover { background: #262a33; color: #fff; }
+  .hint { margin-top: 20px; color: #6b7385; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -57,22 +88,49 @@
   <button id="home" type="button" title="Home" aria-label="Home">⌂</button>
   <form class="address" id="address-form">
     <input id="address" type="text" inputmode="url" spellcheck="false" autocomplete="off"
-           aria-label="Address" placeholder="Search Brave or enter a web address">
+           aria-label="Address" placeholder="Search Google or enter a web address">
     <button type="submit">Go</button>
   </form>
 </header>
-<div class="frame-wrap"><iframe id="page" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer" title="Web page"></iframe></div>
+<main>
+  <section class="start" id="start">
+    <div class="start-card">
+      <div class="start-logo" aria-hidden="true">B</div>
+      <h1>Browser</h1>
+      <p>Search the web or open an address. HTTPS pages are fetched through RAST.</p>
+      <form id="start-form">
+        <input id="start-input" type="text" spellcheck="false" autocomplete="off"
+               aria-label="Search or address" placeholder="Search Google or enter a web address">
+        <button type="submit">Search</button>
+      </form>
+      <div class="links">
+        <a href="#" data-url="https://www.google.com/">Google</a>
+        <a href="#" data-url="https://search.brave.com/">Brave Search</a>
+        <a href="#" data-url="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a>
+        <a href="#" data-url="https://github.com/">GitHub</a>
+        <a href="#" data-url="https://stackoverflow.com/">Stack Overflow</a>
+        <a href="#" data-url="https://example.com/">Example</a>
+      </div>
+      <p class="hint">Google search results are auto-switched to Brave when Google blocks the server fetch.</p>
+    </div>
+  </section>
+  <div class="frame-wrap" id="frame-wrap">
+    <iframe id="page" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer" title="Web page"></iframe>
+  </div>
+</main>
 <footer class="status" id="status">Ready</footer>
 <script>
 (() => {
   const frame = document.getElementById("page");
+  const frameWrap = document.getElementById("frame-wrap");
+  const start = document.getElementById("start");
   const address = document.getElementById("address");
+  const startInput = document.getElementById("start-input");
   const status = document.getElementById("status");
   const back = document.getElementById("back");
   const forward = document.getElementById("forward");
   const reload = document.getElementById("reload");
   const home = document.getElementById("home");
-  const HOME = "https://www.google.com/";
   let history = [];
   let index = -1;
   let current = "";
@@ -84,6 +142,7 @@
   const updateButtons = () => {
     back.disabled = index <= 0;
     forward.disabled = index < 0 || index >= history.length - 1;
+    reload.disabled = !current;
   };
   const proxy = (url) => `/api/browser/page?url=${encodeURIComponent(url)}`;
   const normalize = (input) => {
@@ -92,11 +151,21 @@
     if (/^https:\/\//i.test(value)) return value;
     if (/^http:\/\//i.test(value)) return value.replace(/^http:/i, "https:");
     if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return null;
-    const looksLikeAddress = /^[^\s/]+\.[^\s/]+/.test(value);
+    const looksLikeAddress = /^[^\s/]+\.[^\s/]+/.test(value) || /^localhost(:\d+)?(\/|$)/i.test(value);
     if (!looksLikeAddress) {
-      return `https://search.brave.com/search?q=${encodeURIComponent(value)}`;
+      return `https://www.google.com/search?q=${encodeURIComponent(value)}`;
     }
     return `https://${value}`;
+  };
+  const showStart = () => {
+    current = "";
+    address.value = "";
+    frameWrap.classList.remove("visible");
+    start.hidden = false;
+    start.style.display = "";
+    setStatus("Ready");
+    updateButtons();
+    startInput.focus();
   };
   const show = (url, push) => {
     if (!url) return;
@@ -107,6 +176,9 @@
       history.push(url);
       index = history.length - 1;
     }
+    start.hidden = true;
+    start.style.display = "none";
+    frameWrap.classList.add("visible");
     updateButtons();
     setStatus(`Loading ${url}…`);
     frame.src = proxy(url);
@@ -119,10 +191,13 @@
     }
     show(url, true);
   };
-  document.getElementById("address-form").addEventListener("submit", (event) => {
+  const submit = (event) => {
     event.preventDefault();
-    navigate(address.value);
-  });
+    const source = event.target.id === "start-form" ? startInput.value : address.value;
+    if (source.trim()) navigate(source);
+  };
+  document.getElementById("address-form").addEventListener("submit", submit);
+  document.getElementById("start-form").addEventListener("submit", submit);
   back.addEventListener("click", () => {
     if (index > 0) {
       index -= 1;
@@ -141,9 +216,19 @@
       frame.src = proxy(current);
     }
   });
-  home.addEventListener("click", () => show(HOME, true));
+  home.addEventListener("click", () => {
+    history = [];
+    index = -1;
+    showStart();
+  });
+  document.querySelectorAll(".links a[data-url]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      show(link.dataset.url, true);
+    });
+  });
   frame.addEventListener("load", () => {
-    setStatus(`Showing ${current}`);
+    if (current) setStatus(`Showing ${current}`);
   });
   window.addEventListener("message", (event) => {
     if (event.source !== frame.contentWindow) return;
@@ -153,7 +238,7 @@
     show(data.url, true);
   });
   window.addEventListener("error", (event) => setStatus(String(event.message || "Load failed"), true));
-  show(HOME, true);
+  showStart();
 })();
 </script>
 </body>
