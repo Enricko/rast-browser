@@ -57,7 +57,7 @@
   <button id="home" type="button" title="Home" aria-label="Home">⌂</button>
   <form class="address" id="address-form">
     <input id="address" type="text" inputmode="url" spellcheck="false" autocomplete="off"
-           aria-label="Address" placeholder="Search Google or enter a web address">
+           aria-label="Address" placeholder="Search Brave or enter a web address">
     <button type="submit">Go</button>
   </form>
 </header>
@@ -94,7 +94,7 @@
     if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return null;
     const looksLikeAddress = /^[^\s/]+\.[^\s/]+/.test(value);
     if (!looksLikeAddress) {
-      return `https://www.google.com/search?gbv=1&q=${encodeURIComponent(value)}`;
+      return `https://search.brave.com/search?q=${encodeURIComponent(value)}`;
     }
     return `https://${value}`;
   };

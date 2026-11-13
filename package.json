@@ -37,9 +37,9 @@
     }
   },
   "source": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "url": "https://github.com/Enricko/rast-browser",
-    "sha256": "e435fbac7b0e6bb5ab7fbc4fd59d24d816eacc020f61d8b747783517161ec82e"
+    "sha256": "6f86da6c9d0b9a4a213767ddd0757431344f2aeba9120ad103f4a7a887640c79"
   },
   "targets": {
     "linux-x86_64": "ubuntu-24.04",

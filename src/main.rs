@@ -2,7 +2,7 @@
 //! This small command exists so the package has a valid runtime section and a
 //! version check; it is not what the App Center window runs.
 
-const VERSION: &str = "1.0.1";
+const VERSION: &str = "1.0.2";
 
 fn main() {
     if std::env::args().any(|arg| arg == "--version" || arg == "-V") {
