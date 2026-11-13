@@ -213,10 +213,13 @@
       setStatus("Enter an https:// address.", true);
       return;
     }
-    // Searches use the reader (the engine pages refuse framing); addresses
-    // use the direct view unless Reader is selected.
+    // Searches use the reader (the engine pages refuse framing); every typed
+    // address always starts in the direct view, even if a previous page was
+    // switched to Reader. The toolbar button switches the current page.
     const looksLikeSearch = url.includes("/search?q=");
-    show(url, true, looksLikeSearch);
+    mode = looksLikeSearch ? "reader" : "direct";
+    updateMode();
+    show(url, true);
   };
   const submit = (event) => {
     event.preventDefault();
